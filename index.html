@@ -108,7 +108,7 @@
 
       <div class="result" aria-live="polite">
         <div class="label">合計コスト</div>
-        <div class="total" id="total">¥0</div>
+        <div class="total" id="total">0円</div>
         <div class="formula" id="formula"></div>
       </div>
     </div>
@@ -121,6 +121,7 @@
     const total = document.getElementById("total");
     const formula = document.getElementById("formula");
     const yen = new Intl.NumberFormat("ja-JP", { style: "currency", currency: "JPY" });
+    const comma = new Intl.NumberFormat("ja-JP");
 
     function num(el) {
       const v = parseFloat(el.value);
@@ -129,7 +130,7 @@
 
     function update() {
       const p = num(people), h = num(hours), r = num(rate);
-      total.textContent = yen.format(Math.round(p * h * r));
+      total.textContent = `${comma.format(Math.round(p * h * r))}円`;
       formula.textContent = `${p}人 × ${h}時間 × ${yen.format(r)}`;
     }
 
